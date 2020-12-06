@@ -1,4 +1,5 @@
 <div class="main-body">
+  <img class="ecr-icon" src="../../assets/Untitled.png" alt="" />
   <div
     class="construction-area d-flex align-items-center justify-content-center"
   >
@@ -9,7 +10,6 @@
       id="siteList"
       (change)="onSelectSiteName($event)"
     >
-      <option value="" disabled selected>Select a Site</option>
       <option value="{{ option }}" *ngFor="let option of siteNames">
         {{ option }}
       </option>
@@ -27,7 +27,7 @@
         </button>
         <ng-container
           *ngIf="
-            todayDate.toDateString() === selectedData.toDateString();
+            todayDate.toDateString() === selectedDate.toDateString();
             then today;
             else date
           "
@@ -36,12 +36,12 @@
           <h3>Today</h3>
         </ng-template>
         <ng-template #date>
-          <h3>{{ selectedData.toLocaleDateString() }}</h3>
+          <h3>{{ selectedDate.toLocaleDateString() }}</h3>
         </ng-template>
 
         <button
           class="btn btn-outline-light btn-sm"
-          [disabled]="selectedData.toDateString() == todayDate.toDateString()"
+          [disabled]="selectedDate.toDateString() == todayDate.toDateString()"
           (click)="onHandleDateIncreament()"
         >
           <i class="fa fa-angle-right"></i>
@@ -71,7 +71,7 @@
           <div class="site-view">
             <div class="development-area d-flex align-items-center">
               <p>Deployment:</p>
-              <p>{{ this.selectedData.toDateString() }}</p>
+              <p>{{ currentDate }}</p>
             </div>
 
             <button
@@ -134,13 +134,21 @@
               </div>
               <div class="supervisor-details">
                 <p>Site Supervisor</p>
-                <div *ngIf="siteDetails">
-                  <p>{{ siteDetails.siteSupervisor }}</p>
+                <ng-container
+                  *ngIf="siteDetails; then siteDetailsBlock; else notAvilable"
+                ></ng-container>
+                <ng-template #siteDetailsBlock>
                   <div>
-                    <p>{{ "+91" + siteDetails.mobile }}</p>
-                    <i class="fa fa-mobile"></i>
+                    <p>{{ siteDetails.siteSupervisor }}</p>
+                    <div>
+                      <p>{{ "+91" + siteDetails.mobile }}</p>
+                      <i class="fa fa-mobile"></i>
+                    </div>
                   </div>
-                </div>
+                </ng-template>
+                <ng-template #notAvilable>
+                  <p class="notAvilable">NA</p>
+                </ng-template>
               </div>
             </ng-template>
             <ng-template #registerView>
@@ -150,9 +158,15 @@
               >
                 <div class="vehicle-details">
                   <div>
-                    <h3>Vehicle Details</h3>
-                    <p>{{ "Date : " + selectedData.toLocaleDateString() }}</p>
+                    <div class="download-icon">
+                      <h3>Vehicle Details</h3>
+                      <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
                     <div class="table-head">
+                      <p>
+                        {{ "Date : " + selectedDate.toLocaleDateString() }}
+                      </p>
+
                       <table>
                         <thead>
                           <tr>
@@ -164,10 +178,10 @@
                       </table>
                     </div>
                     <div class="table-body">
-                      <table>
-                        <div *ngFor="let vehicleDetail of vehicleDetails">
+                      <div *ngFor="let vehicleDetail of vehicleDetails">
+                        <table class="outer-table">
                           <tr *ngFor="let vehicle of vehicleDetail.vehicle">
-                            <table>
+                            <table class="inner-table">
                               <tr>
                                 <td>
                                   {{ vehicle.time }}
@@ -179,12 +193,11 @@
                               </tr>
                             </table>
                           </tr>
-                        </div>
-                      </table>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <i class="fa fa-download" aria-hidden="true"> Download</i>
               </div>
             </ng-template>
           </div>

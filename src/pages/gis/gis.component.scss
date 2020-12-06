@@ -2,8 +2,15 @@
   width: 100%;
   margin: auto;
 }
+.ecr-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 100px;
+  height: 100px;
+}
 .construction-area {
-  margin-top: 10px;
+  margin-top: 60px;
   label {
     font-size: 20px;
     font-family: Montserrat-Regular;
@@ -22,7 +29,7 @@
 
 .content-section {
   width: 70%;
-  margin: 10px auto;
+  margin: 20px auto;
   border: 1px solid black;
   padding: 15px 10px;
   label {
@@ -117,7 +124,7 @@
     }
   }
   .btn-sm {
-    margin: 45px 5px 0px 0px;
+    margin: 45px 0px 0px 0px;
     color: black;
     font-weight: 500;
     padding: 5px 15px;
@@ -130,7 +137,6 @@
     background-color: #6c757d;
   }
   .site-details {
-    margin-top: 10px;
     border: 1px solid rgb(168, 163, 163);
     div {
       margin: 40px 0px;
@@ -151,8 +157,9 @@
     margin-top: 40px;
     display: flex;
     justify-content: space-between;
+
     p {
-      margin: 5px 0px;
+      margin: 5px 0px 0px 0px;
       font-family: Montserrat-Regular;
     }
     div {
@@ -167,6 +174,10 @@
           margin-left: 10px;
         }
       }
+    }
+    .notAvilable {
+      font-weight: bold;
+      font-size: 18px;
     }
   }
 }
@@ -183,12 +194,16 @@
   height: 100%;
 }
 .vehicle-details-body {
-  margin-top: 5px;
   .vehicle-details {
-    height: 320px;
+    height: 350px;
     border: 1px solid black;
     overflow: scroll;
     padding: 10px;
+  }
+  .download-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     h3 {
       margin: 0px;
@@ -234,12 +249,13 @@
   table {
     width: 360px;
   }
-  td {
+  .inner-table td {
     width: 120px;
     padding: 2px 4px;
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: black;
     font-family: Montserrat-Regular;
-    border: 1px solid black;
-    border-collapse: collapse;
     text-align: center;
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Leaflet from 'leaflet';
 
 import * as data from '../../assets/data.json';
+import { formatDate } from '@angular/common';
 import { cloneDeep } from 'lodash';
 import { IconstructionData } from './model/constructionData.model';
 import { IvehicleData } from './model/vehicleData.model';
@@ -32,7 +33,8 @@ export class GisComponent implements OnInit {
   public timeRange = 0;
   private count = 0;
   public todayDate = new Date();
-  public selectedData = new Date();
+  public selectedDate = new Date();
+  public currentDate: string = formatDate(new Date(), 'EEE, dd MMM y', 'en');
   public siteNames: any[] = [];
   constructionDetails: IconstructionData[] = (data as any).default;
 
@@ -40,7 +42,6 @@ export class GisComponent implements OnInit {
 
   public ngOnInit() {
     // loading Custom Icons for maps
-
     this.excavatorIcon = Leaflet.icon({
       iconUrl: './../../assets/excavator.png',
       iconSize: [38, 40],
@@ -55,16 +56,16 @@ export class GisComponent implements OnInit {
         this.siteNames.push(site.constructionArea);
       }
     });
+    if (this.siteNames && this.siteNames.length > 0) {
+      this.gettingLatLngOnSelectedSite(this.siteNames[0]);
+    }
   }
 
-  onSelectSiteName(event) {
-    this.excavators = [];
-    this.trucks = [];
-    const selectedValue = event.target.value;
-    // getting the co-ordinates as per selected Site Name;
+  gettingLatLngOnSelectedSite(selectedValue) {
     const constructionDetails: IconstructionData[] = cloneDeep(
       this.constructionDetails
     );
+    // getting the co-ordinates as per selected Site Name;
     const siteDetail: IconstructionData = constructionDetails.find((site) => {
       if (site.constructionArea === selectedValue) {
         this.lat = site.latitude;
@@ -79,13 +80,19 @@ export class GisComponent implements OnInit {
       this.selectedDateFilter();
     }
   }
+  onSelectSiteName(event) {
+    this.excavators = [];
+    this.trucks = [];
+    const selectedValue = event.target.value;
+    this.gettingLatLngOnSelectedSite(selectedValue);
+  }
 
   selectedDateFilter() {
     const siteDetail = cloneDeep(this.siteDetails);
     const vehicleDetails: IvehicleData[] = siteDetail.vehicleData.filter(
       (data) => {
         const date = new Date(data.date).toLocaleDateString();
-        if (date === this.selectedData.toLocaleDateString()) {
+        if (date === this.selectedDate.toLocaleDateString()) {
           return data;
         }
       }
@@ -110,10 +117,6 @@ export class GisComponent implements OnInit {
           }
         });
         this.addNewVehicleMarker();
-      } else {
-        if (this.customMarker.length > 0) {
-          this.customMarker.forEach((e) => this.map.removeLayer(e));
-        }
       }
     }
   }
@@ -134,7 +137,11 @@ export class GisComponent implements OnInit {
       );
     });
   }
-
+  removeVehicleMarker() {
+    if (this.customMarker.length > 0) {
+      this.customMarker.forEach((e) => this.map.removeLayer(e));
+    }
+  }
   updateDateTime(vehicleDetails: IvehicleData[]) {
     vehicleDetails.map((data) => {
       data.vehicle.map((Datetime) => {
@@ -165,16 +172,28 @@ export class GisComponent implements OnInit {
   }
 
   onHandleDateRedution() {
-    const date = new Date(this.selectedData);
+    const date = new Date(this.selectedDate);
     date.setDate(date.getDate() - 1);
-    this.selectedData = date;
+    this.selectedDate = date;
+    this.currentDate = formatDate(
+      new Date(this.selectedDate),
+      'EEE, dd MMM y',
+      'en'
+    );
+    this.removeVehicleMarker();
     this.selectedDateFilter();
   }
 
   onHandleDateIncreament() {
-    const date = new Date(this.selectedData);
+    const date = new Date(this.selectedDate);
     date.setDate(date.getDate() + 1);
-    this.selectedData = date;
+    this.selectedDate = date;
+    this.currentDate = formatDate(
+      new Date(this.selectedDate),
+      'EEE, dd MMM y',
+      'en'
+    );
+    this.removeVehicleMarker();
     this.selectedDateFilter();
   }
 
@@ -182,6 +201,7 @@ export class GisComponent implements OnInit {
     this.vehicleDetails = null;
     this.excavators = [];
     this.trucks = [];
+    this.removeVehicleMarker();
     this.selectedDateFilter();
   }
 
