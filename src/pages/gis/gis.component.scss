@@ -1,0 +1,211 @@
+.main-body {
+  width: 80%;
+  margin: auto;
+}
+.construction-area {
+  text-align: center;
+  label {
+    font-size: 20px;
+    font-family: Montserrat-Regular;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  select {
+    font-size: 18px;
+    font-family: Montserrat-Regular;
+    padding: 5px;
+  }
+}
+
+.content-section {
+  width: 80%;
+  margin: 10px auto;
+  border: 1px solid black;
+  padding: 15px 10px;
+  label {
+    margin-left: 12px;
+  }
+}
+
+.date-section {
+  display: flex;
+  align-items: center;
+  button {
+    display: inline-block;
+    padding: 0px;
+    outline: none;
+    border: none;
+    background-color: white;
+  }
+  button:active {
+    background-color: rgb(239, 239, 239);
+  }
+  i {
+    border: 1px solid red;
+    padding: 2px 10px;
+    font-weight: bold;
+    font-size: 25px;
+  }
+  h3 {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin: 0px;
+    font-size: 17px;
+    font-family: Montserrat-SemiBold;
+    width: 8%;
+    text-align: center;
+    font-weight: 500;
+    padding: 4.5px 8px;
+  }
+}
+
+.slider {
+  -webkit-appearance: none;
+  margin-left: 10px;
+  width: 60%;
+  height: 20px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #4caf50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #4caf50;
+  cursor: pointer;
+}
+.map-section {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+}
+.map-area {
+  border: 1px solid rgb(239, 239, 239);
+  width: 75%;
+}
+.site-view {
+  width: 25%;
+  padding: 0px 20px;
+  border: 1px solid rgb(170, 168, 168);
+
+  .development-area {
+    display: flex;
+    align-items: center;
+    p:first-child {
+      font-size: 19px;
+      font-family: Montserrat-Regular;
+      margin-right: 5px;
+    }
+    p:last-child {
+      font-size: 17px;
+      font-family: Montserrat-Regular;
+      font-weight: bold;
+    }
+  }
+  button {
+    margin-top: 45px;
+    padding: 5px 15px;
+    font-family: Montserrat-Regular;
+    cursor: pointer;
+  }
+  .site-details {
+    border: 1px solid rgb(168, 163, 163);
+    div {
+      display: flex;
+      align-items: center;
+      margin: 40px 0px;
+
+      p {
+        margin: 0px 0px 0px 90px;
+        font-size: 35px;
+        font-family: Montserrat-Regular;
+        font-weight: bold;
+      }
+    }
+    img {
+      width: 50px;
+      margin-left: 50px;
+    }
+  }
+  .supervisor-details {
+    margin-top: 40px;
+    padding: 20px 10px 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    p {
+      margin: 5px 0px;
+      font-family: Montserrat-Regular;
+    }
+    div {
+      text-align: justify;
+      font-weight: bold;
+      font-size: 15px;
+      font-family: Montserrat-Regular;
+      div {
+        display: flex;
+        align-items: center;
+
+        i {
+          font-size: 25px;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+.map-container {
+  width: 100%;
+  height: 50vh;
+  // position: absolute;
+  top: 200px;
+  left: 27px;
+  bottom: 36px;
+  background: transparent 0% 0% no-repeat padding-box;
+  box-shadow: 0px 10px 15px #4b628129;
+  border: 1px solid #ffffff;
+}
+#map {
+  width: 100%;
+  height: 100%;
+}
+.vehicle-details-body {
+  margin-top: 5px;
+  .vehicle-details {
+    height: 270px;
+    border: 1px solid black;
+    overflow-y: scroll;
+    padding: 10px;
+
+    h3 {
+      margin: 0px;
+      font-family: Montserrat-Regular;
+    }
+    ol{
+      li{
+        padding: 5px 0px;
+      }
+    }
+    ul{
+      padding: 2px 0px;
+      font-family: Montserrat-Regular;
+    }
+  }
+  i {
+    font-size: 20px;
+    margin: 10px 20px;
+  }
+}
