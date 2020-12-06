@@ -15,20 +15,21 @@ import { Ivehicle } from './model/vehicle.model';
 export class GisComponent implements OnInit {
   private lat: number;
   private lng: number;
-  private _radius = 1000;
-  public _latLng: any;
+  private rad = 1000;
+  public ilatLng: any;
   private circle: any;
   private marker: any;
   private map: any;
   private excavatorIcon;
   public excavators: Ivehicle[] = [];
   public trucks: Ivehicle[] = [];
+  public vehicleListDetails: IvehicleData;
   private truckIcon;
   public tabSelect = true;
   private customMarker = [];
-  public vehicleDetails: IvehicleData = null;
+  public vehicleDetails: IvehicleData[] = [];
   public siteDetails: IconstructionData;
-  public timeRange = 12;
+  public timeRange = 0;
   private count = 0;
   public todayDate = new Date();
   public selectedData = new Date();
@@ -37,11 +38,11 @@ export class GisComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
+  public ngOnInit() {
     // loading Custom Icons for maps
 
     this.excavatorIcon = Leaflet.icon({
-      iconUrl: './../../assets/Escavation.png',
+      iconUrl: './../../assets/excavator.png',
       iconSize: [38, 40],
     });
     this.truckIcon = Leaflet.icon({
@@ -57,12 +58,14 @@ export class GisComponent implements OnInit {
   }
 
   onSelectSiteName(event) {
+    this.excavators = [];
+    this.trucks = [];
     const selectedValue = event.target.value;
     // getting the co-ordinates as per selected Site Name;
-    const constructionDetail: IconstructionData[] = cloneDeep(
+    const constructionDetails: IconstructionData[] = cloneDeep(
       this.constructionDetails
     );
-    const siteDetail: IconstructionData = constructionDetail.find((site) => {
+    const siteDetail: IconstructionData = constructionDetails.find((site) => {
       if (site.constructionArea === selectedValue) {
         this.lat = site.latitude;
         this.lng = site.longitude;
@@ -71,60 +74,81 @@ export class GisComponent implements OnInit {
       }
     });
     this.siteDetails = siteDetail;
-    if (siteDetail) {
-      this.dateFilter();
+    if (this.siteDetails) {
+      this.loadingMap();
+      this.selectedDateFilter();
     }
-
-    this.loadingMap();
   }
 
-  dateFilter() {
+  selectedDateFilter() {
     const siteDetail = cloneDeep(this.siteDetails);
-    const vehicleDetail: IvehicleData = siteDetail.vehicleData.find((data) => {
-      const hourtime = new Date(data.date).getHours();
-      const date = new Date(data.date).toLocaleDateString();
-      if (
-        date === this.selectedData.toLocaleDateString() &&
-        hourtime === this.timeRange
-      ) {
-        return data;
+    const vehicleDetails: IvehicleData[] = siteDetail.vehicleData.filter(
+      (data) => {
+        const date = new Date(data.date).toLocaleDateString();
+        if (date === this.selectedData.toLocaleDateString()) {
+          return data;
+        }
       }
-    });
-    this.vehicleDetails = vehicleDetail;
-    if (this.vehicleDetails) {
-      this.excavators = this.vehicleDetails.excavator;
-      this.trucks = this.vehicleDetails.trucks;
-
-      this.excavators.forEach((data) => {
-        data.time = new Date(data.date).toLocaleDateString();
-        data.date = new Date(data.date).toLocaleTimeString();
-        this.customMarker.push(
-          Leaflet.marker([data.latitude, data.longitude], {
-            icon: this.excavatorIcon,
-          }).addTo(this.map)
-        );
+    );
+    this.vehicleDetails = vehicleDetails;
+    if (vehicleDetails) {
+      this.updateDateTime(vehicleDetails);
+      const vehicleListDetails: IvehicleData = vehicleDetails.find((data) => {
+        const hourtime = new Date(data.date).getHours();
+        if (hourtime === this.timeRange) {
+          return data;
+        }
       });
 
-      this.trucks.forEach((data) => {
-        data.time = new Date(data.date).toLocaleDateString();
-        data.date = new Date(data.date).toLocaleTimeString();
-        this.customMarker.push(
-          Leaflet.marker([data.latitude, data.longitude], {
-            icon: this.truckIcon,
-          }).addTo(this.map)
-        );
-      });
-    } else {
-      if (this.customMarker.length > 0) {
-        this.customMarker.forEach((e) => this.map.removeLayer(e));
+      this.vehicleListDetails = vehicleListDetails;
+      if (this.vehicleListDetails) {
+        this.vehicleListDetails['vehicle'].forEach((data) => {
+          if (data.vehicleType === 'Excavator') {
+            this.excavators.push(data);
+          } else if (data.vehicleType === 'Truck') {
+            this.trucks.push(data);
+          }
+        });
+        this.addNewVehicleMarker();
+      } else {
+        if (this.customMarker.length > 0) {
+          this.customMarker.forEach((e) => this.map.removeLayer(e));
+        }
       }
     }
+  }
+
+  addNewVehicleMarker() {
+    this.excavators.forEach((data) => {
+      this.customMarker.push(
+        Leaflet.marker([data.latitude, data.longitude], {
+          icon: this.excavatorIcon,
+        }).addTo(this.map)
+      );
+    });
+    this.trucks.forEach((data) => {
+      this.customMarker.push(
+        Leaflet.marker([data.latitude, data.longitude], {
+          icon: this.truckIcon,
+        }).addTo(this.map)
+      );
+    });
+  }
+
+  updateDateTime(vehicleDetails: IvehicleData[]) {
+    vehicleDetails.map((data) => {
+      data.vehicle.map((Datetime) => {
+        Datetime.time = new Date(data.date).toLocaleTimeString();
+        Datetime.date = new Date(data.date).toLocaleDateString();
+      });
+    });
+    this.vehicleDetails = vehicleDetails;
   }
 
   // loading initial map
 
   loadingMap() {
-    this._latLng = Leaflet.latLng(this.lat, this.lng);
+    this.ilatLng = Leaflet.latLng(this.lat, this.lng);
     if (this.count === 1) {
       setTimeout(this.loadMap.bind(this), 100);
     } else {
@@ -144,19 +168,21 @@ export class GisComponent implements OnInit {
     const date = new Date(this.selectedData);
     date.setDate(date.getDate() - 1);
     this.selectedData = date;
-    this.dateFilter();
+    this.selectedDateFilter();
   }
 
   onHandleDateIncreament() {
     const date = new Date(this.selectedData);
     date.setDate(date.getDate() + 1);
     this.selectedData = date;
-    this.dateFilter();
+    this.selectedDateFilter();
   }
 
   onHandleChangingTimeRange() {
     this.vehicleDetails = null;
-    this.dateFilter();
+    this.excavators = [];
+    this.trucks = [];
+    this.selectedDateFilter();
   }
 
   onHandleMapviewClick() {
@@ -168,22 +194,22 @@ export class GisComponent implements OnInit {
   }
 
   get radius() {
-    return this._radius;
+    return this.rad;
   }
 
   set radius(value) {
-    this._radius = value;
+    this.rad = value;
     this.circle.setRadius(value);
   }
 
   set latLng(value) {
-    this._latLng = value;
+    this.ilatLng = value;
     this.circle.setLatLng(value);
     this.marker.setLatLng(value);
   }
 
   get latLng() {
-    return this._latLng;
+    return this.ilatLng;
   }
 
   loadMap() {

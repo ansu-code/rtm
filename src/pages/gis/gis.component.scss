@@ -1,43 +1,43 @@
 .main-body {
-  width: 80%;
+  width: 100%;
   margin: auto;
 }
 .construction-area {
-  text-align: center;
+  margin-top: 10px;
   label {
     font-size: 20px;
     font-family: Montserrat-Regular;
     font-weight: bold;
     margin-right: 10px;
   }
-  select {
+  .form-control {
     font-size: 18px;
+    color: black;
+    box-shadow: none;
+    width: 25%;
     font-family: Montserrat-Regular;
     padding: 5px;
   }
 }
 
 .content-section {
-  width: 80%;
+  width: 70%;
   margin: 10px auto;
   border: 1px solid black;
   padding: 15px 10px;
   label {
-    margin-left: 12px;
+    margin: 3px 0px 0px 12px;
   }
 }
 
 .date-section {
-  display: flex;
-  align-items: center;
-  button {
-    display: inline-block;
+  .btn-sm {
     padding: 0px;
-    outline: none;
+    color: black;
     border: none;
     background-color: white;
   }
-  button:active {
+  .btm-sm:active {
     background-color: rgb(239, 239, 239);
   }
   i {
@@ -47,22 +47,22 @@
     font-size: 25px;
   }
   h3 {
+    text-align: center;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     margin: 0px;
-    font-size: 17px;
+    font-size: 16px;
     font-family: Montserrat-SemiBold;
     width: 8%;
-    text-align: center;
     font-weight: 500;
-    padding: 4.5px 8px;
+    padding: 5px 8px;
   }
 }
 
 .slider {
   -webkit-appearance: none;
   margin-left: 10px;
-  width: 60%;
+  width: 57%;
   height: 20px;
   background: #d3d3d3;
   outline: none;
@@ -89,12 +89,13 @@
   cursor: pointer;
 }
 .map-section {
-  width: 100%;
   margin-top: 10px;
+  width: 100%;
   display: flex;
 }
 .map-area {
   border: 1px solid rgb(239, 239, 239);
+  padding: 0px;
   width: 75%;
 }
 .site-view {
@@ -103,8 +104,7 @@
   border: 1px solid rgb(170, 168, 168);
 
   .development-area {
-    display: flex;
-    align-items: center;
+    margin-top: 10px;
     p:first-child {
       font-size: 19px;
       font-family: Montserrat-Regular;
@@ -116,22 +116,28 @@
       font-weight: bold;
     }
   }
-  button {
-    margin-top: 45px;
+  .btn-sm {
+    margin: 45px 5px 0px 0px;
+    color: black;
+    font-weight: 500;
     padding: 5px 15px;
     font-family: Montserrat-Regular;
     cursor: pointer;
   }
+  .selected {
+    box-shadow: none;
+    color: white;
+    background-color: #6c757d;
+  }
   .site-details {
+    margin-top: 10px;
     border: 1px solid rgb(168, 163, 163);
     div {
-      display: flex;
-      align-items: center;
       margin: 40px 0px;
 
       p {
         margin: 0px 0px 0px 90px;
-        font-size: 35px;
+        font-size: 30px;
         font-family: Montserrat-Regular;
         font-weight: bold;
       }
@@ -143,7 +149,6 @@
   }
   .supervisor-details {
     margin-top: 40px;
-    padding: 20px 10px 10px 10px;
     display: flex;
     justify-content: space-between;
     p {
@@ -151,14 +156,12 @@
       font-family: Montserrat-Regular;
     }
     div {
-      text-align: justify;
       font-weight: bold;
       font-size: 15px;
       font-family: Montserrat-Regular;
       div {
         display: flex;
         align-items: center;
-
         i {
           font-size: 25px;
           margin-left: 10px;
@@ -168,12 +171,9 @@
   }
 }
 .map-container {
+  position: relative;
   width: 100%;
-  height: 50vh;
-  // position: absolute;
-  top: 200px;
-  left: 27px;
-  bottom: 36px;
+  height: 500px;
   background: transparent 0% 0% no-repeat padding-box;
   box-shadow: 0px 10px 15px #4b628129;
   border: 1px solid #ffffff;
@@ -185,27 +185,73 @@
 .vehicle-details-body {
   margin-top: 5px;
   .vehicle-details {
-    height: 270px;
+    height: 320px;
     border: 1px solid black;
-    overflow-y: scroll;
+    overflow: scroll;
     padding: 10px;
 
     h3 {
       margin: 0px;
+      font-size: 20px;
       font-family: Montserrat-Regular;
     }
-    ol{
-      li{
-        padding: 5px 0px;
-      }
-    }
-    ul{
-      padding: 2px 0px;
+    p {
+      font-size: 18px;
+      margin-top: 10px;
       font-family: Montserrat-Regular;
     }
   }
   i {
+    float: right;
     font-size: 20px;
-    margin: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+  }
+}
+.table-head {
+  width: 370px;
+  table {
+    width: 360px;
+  }
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  thead {
+    th {
+      padding: 2px 4px;
+      width: 120px;
+      font-family: Montserrat-Regular;
+      text-align: center;
+    }
+  }
+}
+
+.table-body {
+  width: 370px;
+  table {
+    width: 360px;
+  }
+  td {
+    width: 120px;
+    padding: 2px 4px;
+    font-family: Montserrat-Regular;
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .content-section {
+    width: 85%;
+  }
+  .map-area {
+    width: 70%;
+  }
+  .site-view {
+    width: 30%;
   }
 }

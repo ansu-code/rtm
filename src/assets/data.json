@@ -12,12 +12,13 @@
       {
         "id": 1,
         "date": "2020-12-04T08:23:02.362Z",
-        "excavator": [
+        "vehicle": [
           {
             "id": 1,
             "date": "2020-12-04T08:23:02.362Z",
             "latitude": 20.4064,
             "longitude": 85.8496,
+            "vehicleType": "Excavator",
             "vehicleNo": 1234
           },
           {
@@ -25,6 +26,7 @@
             "date": "2020-12-04T08:23:02.362Z",
             "latitude": 20.4016,
             "longitude": 85.8483,
+            "vehicleType": "Excavator",
             "vehicleNo": 1235
           },
           {
@@ -32,36 +34,39 @@
             "date": "2020-12-04T08:23:02.362Z",
             "latitude": 20.40456,
             "longitude": 85.8448,
+            "vehicleType": "Excavator",
             "vehicleNo": 1236
-          }
-        ],
-        "trucks": [
-          {
-            "id": 1,
-            "date": "2020-12-04T08:23:02.362Z",
-            "latitude": 20.411,
-            "longitude": 85.8489,
-            "vehicleNo": 1237
-          },
-          {
-            "id": 2,
-            "date": "2020-12-04T08:23:02.362Z",
-            "latitude": 20.4032,
-            "longitude": 85.8554,
-            "vehicleNo": 1238
-          },
-          {
-            "id": 3,
-            "date": "2020-12-04T08:23:02.362Z",
-            "latitude": 20.3986,
-            "longitude": 85.8505,
-            "vehicleNo": 1239
           },
           {
             "id": 4,
             "date": "2020-12-04T08:23:02.362Z",
+            "latitude": 20.411,
+            "longitude": 85.8489,
+            "vehicleType": "Truck",
+            "vehicleNo": 1237
+          },
+          {
+            "id": 5,
+            "date": "2020-12-04T08:23:02.362Z",
+            "latitude": 20.4032,
+            "longitude": 85.8554,
+            "vehicleType": "Truck",
+            "vehicleNo": 1238
+          },
+          {
+            "id": 6,
+            "date": "2020-12-04T08:23:02.362Z",
+            "latitude": 20.3986,
+            "longitude": 85.8505,
+            "vehicleType": "Truck",
+            "vehicleNo": 1239
+          },
+          {
+            "id": 7,
+            "date": "2020-12-04T08:23:02.362Z",
             "latitude": 20.4051,
             "longitude": 85.8408,
+            "vehicleType": "Truck",
             "vehicleNo": 1230
           }
         ]
@@ -69,12 +74,13 @@
       {
         "id": 2,
         "date": "2020-12-04T10:26:22.763Z",
-        "excavator": [
+        "vehicle": [
           {
             "id": 1,
             "date": "2020-12-04T10:26:22.763Z",
             "latitude": 20.4054,
             "longitude": 85.8486,
+            "vehicleType": "Excavator",
             "vehicleNo": 1236
           },
           {
@@ -82,6 +88,7 @@
             "date": "2020-12-04T10:26:22.763Z",
             "latitude": 20.4026,
             "longitude": 85.8493,
+            "vehicleType": "Excavator",
             "vehicleNo": 1237
           },
           {
@@ -89,36 +96,39 @@
             "date": "2020-12-04T10:26:22.763Z",
             "latitude": 20.40466,
             "longitude": 85.8458,
+            "vehicleType": "Excavator",
             "vehicleNo": 1238
-          }
-        ],
-        "trucks": [
+          },
           {
-            "id": 1,
+            "id": 4,
             "date": "2020-12-04T10:26:22.763Z",
             "latitude": 20.412,
             "longitude": 85.8499,
+            "vehicleType": "Truck",
             "vehicleNo": 1239
           },
           {
-            "id": 2,
+            "id": 5,
             "date": "2020-12-04T10:26:22.763Z",
             "latitude": 20.4042,
             "longitude": 85.8544,
+            "vehicleType": "Truck",
             "vehicleNo": 1220
           },
           {
-            "id": 3,
+            "id": 6,
             "date": "2020-12-04T10:26:22.763Z",
             "latitude": 20.3996,
             "longitude": 85.8525,
+            "vehicleType": "Truck",
             "vehicleNo": 1221
           },
           {
-            "id": 3,
+            "id": 7,
             "date": "2020-12-04T10:26:22.763Z",
             "latitude": 20.4061,
             "longitude": 85.8418,
+            "vehicleType": "Truck",
             "vehicleNo": 1222
           }
         ]
@@ -126,12 +136,13 @@
       {
         "id": 3,
         "date": "2020-12-04T13:26:22.763Z",
-        "excavator": [
+        "vehicle": [
           {
             "id": 1,
             "date": "2020-12-04T13:26:22.763Z",
             "latitude": 20.4064,
             "longitude": 85.8496,
+            "vehicleType": "Excavator",
             "vehicleNo": 1223
           },
           {
@@ -139,6 +150,7 @@
             "date": "2020-12-04T13:26:22.763Z",
             "latitude": 20.4016,
             "longitude": 85.8483,
+            "vehicleType": "Excavator",
             "vehicleNo": 1226
           },
           {
@@ -146,36 +158,39 @@
             "date": "2020-12-04T13:26:22.763Z",
             "latitude": 20.40456,
             "longitude": 85.8448,
+            "vehicleType": "Excavator",
             "vehicleNo": 1227
-          }
-        ],
-        "trucks": [
+          },
           {
-            "id": 1,
+            "id": 4,
             "date": "2020-12-04T13:26:22.763Z",
             "latitude": 20.411,
             "longitude": 85.8489,
+            "vehicleType": "Truck",
             "vehicleNo": 1228
           },
           {
-            "id": 2,
+            "id": 5,
             "date": "2020-12-04T13:26:22.763Z",
             "latitude": 20.4032,
             "longitude": 85.8554,
+            "vehicleType": "Truck",
             "vehicleNo": 1229
           },
           {
-            "id": 3,
+            "id": 6,
             "date": "2020-12-04T13:26:22.763Z",
             "latitude": 20.3986,
             "longitude": 85.8505,
+            "vehicleType": "Truck",
             "vehicleNo": 1210
           },
           {
-            "id": 3,
+            "id": 7,
             "date": "2020-12-04T13:26:22.763Z",
             "latitude": 20.4051,
             "longitude": 85.8408,
+            "vehicleType": "Truck",
             "vehicleNo": 1211
           }
         ]
@@ -195,12 +210,13 @@
       {
         "id": 1,
         "date": "2020-12-04T08:23:02.362Z",
-        "excavator": [
+        "vehicle": [
           {
             "id": 1,
             "date": "2020-12-04T08:23:02.362Z",
             "latitude": 20.2987,
             "longitude": 85.8221,
+            "vehicleType": "Excavator",
             "vehicleNo": 1210
           },
           {
@@ -208,6 +224,7 @@
             "date": "2020-12-04T08:23:02.362Z",
             "latitude": 20.2973,
             "longitude": 85.8266,
+            "vehicleType": "Excavator",
             "vehicleNo": 1211
           },
           {
@@ -215,15 +232,15 @@
             "date": "2020-12-04T08:23:02.362Z",
             "latitude": 20.2948,
             "longitude": 85.823,
+            "vehicleType": "Excavator",
             "vehicleNo": 1212
-          }
-        ],
-        "trucks": [
+          },
           {
             "id": 1,
             "date": "2020-12-04T08:23:02.362Z",
             "latitude": 20.302,
             "longitude": 85.8241,
+            "vehicleType": "Truck",
             "vehicleNo": 1213
           },
           {
@@ -231,6 +248,7 @@
             "date": "2020-12-04T08:23:02.362Z",
             "latitude": 20.297,
             "longitude": 85.8178,
+            "vehicleType": "Truck",
             "vehicleNo": 1214
           },
           {
@@ -238,6 +256,7 @@
             "date": "2020-12-04T08:23:02.362Z",
             "latitude": 20.296,
             "longitude": 85.824,
+            "vehicleType": "Truck",
             "vehicleNo": 1215
           },
           {
@@ -245,6 +264,7 @@
             "date": "2020-12-04T08:23:02.362Z",
             "latitude": 20.2901,
             "longitude": 85.8259,
+            "vehicleType": "Truck",
             "vehicleNo": 1216
           }
         ]
@@ -252,12 +272,13 @@
       {
         "id": 2,
         "date": "2020-12-04T10:26:22.763Z",
-        "excavator": [
+        "vehicle": [
           {
             "id": 1,
             "date": "2020-12-04T10:26:22.763Z",
             "latitude": 20.2977,
             "longitude": 85.8231,
+            "vehicleType": "Excavator",
             "vehicleNo": 1217
           },
           {
@@ -265,6 +286,7 @@
             "date": "2020-12-04T10:26:22.763Z",
             "latitude": 20.2983,
             "longitude": 85.8276,
+            "vehicleType": "Excavator",
             "vehicleNo": 1218
           },
           {
@@ -272,15 +294,15 @@
             "date": "2020-12-04T10:26:22.763Z",
             "latitude": 20.2958,
             "longitude": 85.824,
+            "vehicleType": "Excavator",
             "vehicleNo": 1219
-          }
-        ],
-        "trucks": [
+          },
           {
             "id": 1,
             "date": "2020-12-04T10:26:22.763Z",
             "latitude": 20.303,
             "longitude": 85.8251,
+            "vehicleType": "Truck",
             "vehicleNo": 1220
           },
           {
@@ -288,13 +310,15 @@
             "date": "2020-12-04T10:26:22.763Z",
             "latitude": 20.298,
             "longitude": 85.8188,
+            "vehicleType": "Truck",
             "vehicleNo": 1221
           },
           {
             "id": 3,
             "date": "2020-12-04T10:26:22.763Z",
-            "latitude": 20.286,
-            "longitude": 85.834,
+            "latitude": 20.296,
+            "longitude": 85.8184,
+            "vehicleType": "Truck",
             "vehicleNo": 1222
           },
           {
@@ -302,6 +326,7 @@
             "date": "2020-12-04T10:26:22.763Z",
             "latitude": 20.2911,
             "longitude": 85.8269,
+            "vehicleType": "Truck",
             "vehicleNo": 1223
           }
         ]
@@ -309,12 +334,13 @@
       {
         "id": 3,
         "date": "2020-12-04T13:26:22.763Z",
-        "excavator": [
+        "vehicle": [
           {
             "id": 1,
             "date": "2020-12-04T13:26:22.763Z",
             "latitude": 20.2987,
             "longitude": 85.8221,
+            "vehicleType": "Excavator",
             "vehicleNo": 1224
           },
           {
@@ -322,6 +348,7 @@
             "date": "2020-12-04T13:26:22.763Z",
             "latitude": 20.2973,
             "longitude": 85.8266,
+            "vehicleType": "Excavator",
             "vehicleNo": 1225
           },
           {
@@ -329,15 +356,15 @@
             "date": "2020-12-04T13:26:22.763Z",
             "latitude": 20.2948,
             "longitude": 85.823,
+            "vehicleType": "Excavator",
             "vehicleNo": 1226
-          }
-        ],
-        "trucks": [
+          },
           {
             "id": 1,
             "date": "2020-12-04T13:26:22.763Z",
             "latitude": 20.302,
             "longitude": 85.8241,
+            "vehicleType": "Truck",
             "vehicleNo": 1227
           },
           {
@@ -345,6 +372,7 @@
             "date": "2020-12-04T13:26:22.763Z",
             "latitude": 20.297,
             "longitude": 85.8178,
+            "vehicleType": "Truck",
             "vehicleNo": 1228
           },
           {
@@ -352,6 +380,7 @@
             "date": "2020-12-04T13:26:22.763Z",
             "latitude": 20.296,
             "longitude": 85.824,
+            "vehicleType": "Truck",
             "vehicleNo": 1229
           },
           {
@@ -359,6 +388,7 @@
             "date": "2020-12-04T13:26:22.763Z",
             "latitude": 20.2901,
             "longitude": 85.8259,
+            "vehicleType": "Truck",
             "vehicleNo": 1230
           }
         ]

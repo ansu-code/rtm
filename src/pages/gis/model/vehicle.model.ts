@@ -4,5 +4,6 @@ export interface Ivehicle {
   time: string;
   latitude: number;
   longitude: number;
+  vehicleType: string;
   vehicleNo: number;
 }

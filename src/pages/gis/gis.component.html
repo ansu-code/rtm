@@ -1,151 +1,194 @@
 <div class="main-body">
-  <div class="construction-area">
+  <div
+    class="construction-area d-flex align-items-center justify-content-center"
+  >
     <label for="siteList">Site:</label>
-    <select name="" id="siteList" (change)="onSelectSiteName($event)">
+    <select
+      name=""
+      class="form-control"
+      id="siteList"
+      (change)="onSelectSiteName($event)"
+    >
       <option value="" disabled selected>Select a Site</option>
       <option value="{{ option }}" *ngFor="let option of siteNames">
         {{ option }}
       </option>
     </select>
   </div>
-  <div class="content-section">
-    <div class="date-section">
-      <button [disabled]="siteDetails == null" (click)="onHandleDateRedution()">
-        <i class="fa fa-angle-left"></i>
-      </button>
-      <ng-container
-        *ngIf="
-          todayDate.toDateString() === selectedData.toDateString();
-          then today;
-          else date
-        "
-      ></ng-container>
-      <ng-template #today>
-        <h3>Today</h3>
-      </ng-template>
-      <ng-template #date>
-        <h3>{{ selectedData.toLocaleDateString() }}</h3>
-      </ng-template>
-
-      <button
-        [disabled]="selectedData.toDateString() == todayDate.toDateString()"
-        (click)="onHandleDateIncreament()"
-      >
-        <i class="fa fa-angle-right"></i>
-      </button>
-      <label for="" slot="start"> 0 Hour</label>
-      <input
-        (change)="onHandleChangingTimeRange()"
-        type="range"
-        min="0"
-        max="24"
-        value="1"
-        step="1"
-        [(ngModel)]="timeRange"
-        class="slider"
-        id="myRange"
-      />
-      <label for="" slot="end"> {{ timeRange + " Hour" }}</label>
-    </div>
-    <div class="map-section">
-      <div class="map-area">
-        <div class="map-container">
-          <div id="map"></div>
-        </div>
-      </div>
-      <div class="site-view">
-        <div class="development-area">
-          <p>Deployment:</p>
-          <p>{{ this.selectedData.toDateString() }}</p>
-        </div>
-
-        <button (click)="onHandleMapviewClick()">Real-time-view</button>
-        <button (click)="onHandleDocumentviewClick()">Register</button>
+  <div>
+    <div class="content-section">
+      <div class="date-section d-flex align-items-center">
+        <button
+          class="btn btn-outline-light btn-sm"
+          [disabled]="siteDetails == null"
+          (click)="onHandleDateRedution()"
+        >
+          <i class="fa fa-angle-left"></i>
+        </button>
         <ng-container
-          *ngIf="tabSelect === true; then realTimeView; else registerView"
+          *ngIf="
+            todayDate.toDateString() === selectedData.toDateString();
+            then today;
+            else date
+          "
         ></ng-container>
-        <ng-template #realTimeView>
-          <div class="site-details">
-            <div>
-              <img src="../../assets/Escavation.png" alt="" />
-              <p *ngIf="vehicleDetails">
-                {{ vehicleDetails.excavator.length }}
-              </p>
-            </div>
-            <div>
-              <img src="../../assets/truck.png" alt="" />
-              <p *ngIf="vehicleDetails">
-                {{ vehicleDetails.trucks.length }}
-              </p>
-            </div>
-          </div>
-          <div class="supervisor-details">
-            <p>Site Supervisor</p>
-            <div *ngIf="siteDetails">
-              <p>{{ siteDetails.siteSupervisor }}</p>
-              <div>
-                <p>{{ "+91" + siteDetails.mobile }}</p>
-                <i class="fa fa-mobile"></i>
-              </div>
-            </div>
-          </div>
+        <ng-template #today>
+          <h3>Today</h3>
         </ng-template>
-        <ng-template #registerView>
-          <div class="vehicle-details-body" *ngIf="vehicleDetails">
-            <div class="vehicle-details">
-              <div *ngIf="excavators">
-                <h3>Vehicle Details</h3>
-                <p>{{ "Vehicle Type : Excavator" }}</p>
-                <ol>
-                  <li *ngFor="let excavator of excavators">
-                    <ol>
-                      <ul>
-                        {{
-                          "Date " + excavator.date
-                        }}
-                      </ul>
-                      <ul>
-                        {{
-                          "Time " + excavator.time
-                        }}
-                      </ul>
-                      <ul>
-                        {{
-                          "Vehicle No " + excavator.vehicleNo
-                        }}
-                      </ul>
-                    </ol>
-                  </li>
-                </ol>
-              </div>
-              <div *ngIf="trucks">
-                <p>{{ "Vehicle Type : Truck" }}</p>
-                <ol>
-                  <li *ngFor="let truck of trucks">
-                    <ol>
-                      <ul>
-                        {{
-                          "Date " + truck.date
-                        }}
-                      </ul>
-                      <ul>
-                        {{
-                          "Time " + truck.time
-                        }}
-                      </ul>
-                      <ul>
-                        {{
-                          "Vehicle No " + truck.vehicleNo
-                        }}
-                      </ul>
-                    </ol>
-                  </li>
-                </ol>
-              </div>
-            </div>
-            <i class="fa fa-download" aria-hidden="true"> Download</i>
-          </div>
+        <ng-template #date>
+          <h3>{{ selectedData.toLocaleDateString() }}</h3>
         </ng-template>
+
+        <button
+          class="btn btn-outline-light btn-sm"
+          [disabled]="selectedData.toDateString() == todayDate.toDateString()"
+          (click)="onHandleDateIncreament()"
+        >
+          <i class="fa fa-angle-right"></i>
+        </button>
+        <label for="" slot="start"> 0 Hour</label>
+        <input
+          [disabled]="siteDetails == null"
+          (change)="onHandleChangingTimeRange()"
+          type="range"
+          min="0"
+          max="24"
+          value="1"
+          step="1"
+          [(ngModel)]="timeRange"
+          class="slider"
+          id="myRange"
+        />
+        <label for="" slot="end"> {{ timeRange + " Hour" }}</label>
+      </div>
+      <div>
+        <div class="map-section">
+          <div class="map-area">
+            <div class="map-container">
+              <div id="map"></div>
+            </div>
+          </div>
+          <div class="site-view">
+            <div class="development-area d-flex align-items-center">
+              <p>Deployment:</p>
+              <p>{{ this.selectedData.toDateString() }}</p>
+            </div>
+
+            <button
+              type="button"
+              [ngClass]="{ selected: tabSelect === true }"
+              class="btn btn-outline-secondary btn-sm"
+              (click)="onHandleMapviewClick()"
+            >
+              Real-time-view
+            </button>
+            <button
+              type="button"
+              [ngClass]="{ selected: tabSelect === false }"
+              class="btn btn-outline-secondary btn-sm"
+              (click)="onHandleDocumentviewClick()"
+            >
+              Register
+            </button>
+            <ng-container
+              *ngIf="tabSelect === true; then realTimeView; else registerView"
+            ></ng-container>
+            <ng-template #realTimeView>
+              <div class="site-details">
+                <div class="d-flex align-items-center">
+                  <img src="../../assets/excavator.png" alt="" />
+                  <ng-container
+                    *ngIf="
+                      vehicleListDetails;
+                      then excavatorBlock;
+                      else blankBlock
+                    "
+                  ></ng-container>
+                  <ng-template #excavatorBlock>
+                    <p>
+                      {{ excavators.length }}
+                    </p>
+                  </ng-template>
+                  <ng-template #blankBlock>
+                    <p>NA</p>
+                  </ng-template>
+                </div>
+                <div class="d-flex align-items-center">
+                  <img src="../../assets/truck.png" alt="" />
+                  <ng-container
+                    *ngIf="
+                      vehicleListDetails;
+                      then vehicleBlock;
+                      else blankBlock
+                    "
+                  ></ng-container>
+                  <ng-template #vehicleBlock>
+                    <p>
+                      {{ trucks.length }}
+                    </p>
+                  </ng-template>
+                  <ng-template #blankBlock>
+                    <p>NA</p>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="supervisor-details">
+                <p>Site Supervisor</p>
+                <div *ngIf="siteDetails">
+                  <p>{{ siteDetails.siteSupervisor }}</p>
+                  <div>
+                    <p>{{ "+91" + siteDetails.mobile }}</p>
+                    <i class="fa fa-mobile"></i>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template #registerView>
+              <div
+                class="vehicle-details-body"
+                *ngIf="vehicleDetails && vehicleDetails.length > 0"
+              >
+                <div class="vehicle-details">
+                  <div>
+                    <h3>Vehicle Details</h3>
+                    <p>{{ "Date : " + selectedData.toLocaleDateString() }}</p>
+                    <div class="table-head">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Time</th>
+                            <th>Vehicle Type</th>
+                            <th>Vehicle No</th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                    <div class="table-body">
+                      <table>
+                        <div *ngFor="let vehicleDetail of vehicleDetails">
+                          <tr *ngFor="let vehicle of vehicleDetail.vehicle">
+                            <table>
+                              <tr>
+                                <td>
+                                  {{ vehicle.time }}
+                                </td>
+                                <td>
+                                  {{ vehicle.vehicleType }}
+                                </td>
+                                <td>{{ vehicle.vehicleNo }}</td>
+                              </tr>
+                            </table>
+                          </tr>
+                        </div>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <i class="fa fa-download" aria-hidden="true"> Download</i>
+              </div>
+            </ng-template>
+          </div>
+        </div>
       </div>
     </div>
   </div>
