@@ -10,6 +10,7 @@
       id="siteList"
       (change)="onSelectSiteName($event)"
     >
+    <option value="" selected disabled>Select a Site</option>
       <option value="{{ option }}" *ngFor="let option of siteNames">
         {{ option }}
       </option>

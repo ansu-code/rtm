@@ -31,7 +31,6 @@ export class GisComponent implements OnInit {
   public vehicleDetails: IvehicleData[] = [];
   public siteDetails: IconstructionData;
   public timeRange = 0;
-  private count = 0;
   public todayDate = new Date();
   public selectedDate = new Date();
   public currentDate: string = formatDate(new Date(), 'EEE, dd MMM y', 'en');
@@ -51,14 +50,14 @@ export class GisComponent implements OnInit {
       iconSize: [40, 30],
     });
 
+    this.ilatLng = Leaflet.latLng(20.4044, 85.8484);
+    setTimeout(this.loadMap.bind(this), 100);
+
     this.constructionDetails.filter((site) => {
       if (site.constructionArea !== '') {
         this.siteNames.push(site.constructionArea);
       }
     });
-    if (this.siteNames && this.siteNames.length > 0) {
-      this.gettingLatLngOnSelectedSite(this.siteNames[0]);
-    }
   }
 
   gettingLatLngOnSelectedSite(selectedValue) {
@@ -70,7 +69,6 @@ export class GisComponent implements OnInit {
       if (site.constructionArea === selectedValue) {
         this.lat = site.latitude;
         this.lng = site.longitude;
-        this.count += 1;
         return site;
       }
     });
@@ -78,6 +76,10 @@ export class GisComponent implements OnInit {
     if (this.siteDetails) {
       this.loadingMap();
       this.selectedDateFilter();
+    } else {
+      // this.map.removeLayer(this.marker);
+      // this.map.removeLayer(this.circle);
+      // this.map.panTo(new Leaflet.LatLng(this.lat, this.lng));
     }
   }
   onSelectSiteName(event) {
@@ -156,19 +158,17 @@ export class GisComponent implements OnInit {
 
   loadingMap() {
     this.ilatLng = Leaflet.latLng(this.lat, this.lng);
-    if (this.count === 1) {
-      setTimeout(this.loadMap.bind(this), 100);
-    } else {
+    if (this.marker && this.circle) {
       this.map.removeLayer(this.marker);
       this.map.removeLayer(this.circle);
-      this.marker = Leaflet.marker(this.latLng, { draggable: false }).addTo(
-        this.map
-      );
-      this.circle = Leaflet.circle(this.latLng, this.radius).addTo(this.map);
-
-      // Loading Map
-      this.map.panTo(new Leaflet.LatLng(this.lat, this.lng));
     }
+    this.marker = Leaflet.marker(this.latLng, { draggable: false }).addTo(
+      this.map
+    );
+    this.circle = Leaflet.circle(this.latLng, this.radius).addTo(this.map);
+
+    // Loading Map
+    this.map.panTo(new Leaflet.LatLng(this.lat, this.lng));
   }
 
   onHandleDateRedution() {
@@ -239,10 +239,11 @@ export class GisComponent implements OnInit {
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     ).addTo(this.map);
 
-    this.marker = Leaflet.marker(this.latLng, { draggable: false }).addTo(
-      this.map
-    );
+    //   this.marker = Leaflet.marker(this.latLng, { draggable: false }).addTo(
+    //     this.map
+    //   );
 
-    this.circle = Leaflet.circle(this.latLng, this.radius).addTo(this.map);
+    //   this.circle = Leaflet.circle(this.latLng, this.radius).addTo(this.map);
+    // }
   }
 }
